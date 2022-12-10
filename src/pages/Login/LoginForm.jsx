@@ -2,10 +2,10 @@ import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginFormSchema } from "./schemas/login-form-schema";
-import { Typography, Box } from "@mui/material";
 import { CustomInput } from "../../components/CustomInput";
 import { CustomButton } from "../../components/CustomButton";
 import { DisplayFormValues } from "./components/DisplayFormValues";
+import { callEndPoint } from "../../services/call-endpoint";
 
 export const LoginForm = () => {
   const {
@@ -26,14 +26,18 @@ export const LoginForm = () => {
   const userNameWatch = watch("username");
   const passwordWatch = watch("password");
 
-  const onSubmit = async (data) => {};
+  const onSubmit = async (data) => {
+    const result = await callEndPoint(data);
+    console.log({ result });
+    reset();
+  };
 
   return (
     <>
       {userNameWatch}
       {passwordWatch}
       <FormProvider {...{ register, errors }}>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <CustomInput name="username" label="Nombre de usuario" required />
           <CustomInput
             name="password"
