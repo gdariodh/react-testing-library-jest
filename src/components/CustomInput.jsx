@@ -30,7 +30,7 @@ export const CustomInput = ({
         id={name}
         {...register(name)}
         variant="outlined"
-        fullwidth
+        fullWidth
       ></TextField>
 
       {errors && formValidation(errors, name)}
