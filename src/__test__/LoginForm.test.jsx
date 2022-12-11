@@ -3,6 +3,9 @@ import { LoginForm } from "../pages/Login/LoginForm";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 import { LoginFormMock, LoginFormMockError } from "../__mocks__/LoginForm.mock";
+import axios from "axios";
+
+jest.mock("axios");
 
 describe("LoginForm", () => {
   // ejecuta afterEach cuando termina cada prueba
@@ -111,6 +114,9 @@ describe("LoginForm", () => {
     await userEvent.type(passwordInput, LoginFormMock.password);
     await userEvent.click(submitButton);
 
-    await waitFor(() => {});
+    await waitFor(() => {
+      expect(submitButton).not.toBeDisabled();
+      expect(axios.post).toHaveBeenCalled();
+    });
   });
 });
