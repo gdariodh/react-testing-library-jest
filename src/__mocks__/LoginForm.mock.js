@@ -4,6 +4,6 @@ export const LoginFormMock = {
 };
 
 export const LoginFormMockError = {
-  username: "GabrielError",
+  username: "GabrielErrordadadadda",
   password: "12356",
 };
