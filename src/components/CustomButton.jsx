@@ -7,7 +7,7 @@ export const CustomButton = ({ isDirty, isValid, children, type }) => {
       type={type}
       fullWidth
       variant="contained"
-      disabled={!isDirty | !isValid}
+      disabled={!isDirty || !isValid}
     >
       {children}
     </Button>
