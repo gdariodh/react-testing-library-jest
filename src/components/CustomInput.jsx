@@ -23,7 +23,7 @@ export const CustomInput = ({
     <div>
       <TextField
         required={required}
-        disabled={disabled}
+        {...(disabled ? { disabled } : {})}
         type={type}
         label={label}
         error={errors && !!errors[name]}
