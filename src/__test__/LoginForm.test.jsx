@@ -17,6 +17,11 @@ describe("LoginForm", () => {
   beforeEach(() => {
     // evitamos repetir varias veces el mismo código
     render(<LoginForm />);
+
+    // mockear la funcion de axios para tener un ambiente controlado que devuelva algo la respuesta axios
+
+    // este mock de axios devolvera como data LoginFormMock
+    axios.post.mockResolvedValue({ data: LoginFormMock });
   });
 
   it("should two input and a submit button exists at the screen", async () => {
@@ -109,7 +114,6 @@ describe("LoginForm", () => {
     const submitButton = screen.getByRole("button", {
       name: /Iniciar sesion/i,
     });
-
     await userEvent.type(usernameInput, LoginFormMock.username);
     await userEvent.type(passwordInput, LoginFormMock.password);
     await userEvent.click(submitButton);
