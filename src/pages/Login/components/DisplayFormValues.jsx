@@ -13,3 +13,5 @@ export const DisplayFormValues = ({ isDirty, isValid, values }) => {
     </Box>
   );
 };
+
+export default DisplayFormValues;

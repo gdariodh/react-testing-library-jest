@@ -4,7 +4,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { LoginFormSchema } from "./schemas/login-form-schema";
 import { CustomInput } from "../../components/CustomInput";
 import { CustomButton } from "../../components/CustomButton";
-import { DisplayFormValues } from "./components/DisplayFormValues";
+import DisplayFormValues from "./components/DisplayFormValues";
 import { callEndPoint } from "../../services/call-endpoint";
 import { Box } from "@mui/material";
 

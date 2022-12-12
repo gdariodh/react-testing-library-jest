@@ -5,7 +5,21 @@ import userEvent from "@testing-library/user-event";
 import { LoginFormMock, LoginFormMockError } from "../__mocks__/LoginForm.mock";
 import axios from "axios";
 
+// mockear axios
 jest.mock("axios");
+// mockear el componente DisplayFormValues
+
+// forma de importar component de como export const DisplayFormValues = () => {}
+// jest.mock("../pages/Login/components/DisplayFormValues.jsx", () => ({
+//   __esModule: true,
+//   DisplayFormValues: () => <div>Mocked DisplayFormValues</div>,
+// }));
+
+// forma de importar component con export default DisplayFormValues
+jest.mock("../pages/Login/components/DisplayFormValues.jsx", () => ({
+  __esModule: true,
+  default: () => <div>Mocked DisplayFormValues</div>,
+}));
 
 describe("LoginForm", () => {
   // ejecuta afterEach cuando termina cada prueba
@@ -20,7 +34,7 @@ describe("LoginForm", () => {
 
     // mockear la funcion de axios para tener un ambiente controlado que devuelva algo la respuesta axios
 
-    // este mock de axios devolvera como data LoginFormMock
+    // este mock de axios devolvera como data LoginFormMock, sirve para post, get, etc
     axios.post.mockResolvedValue({ data: LoginFormMock });
   });
 
@@ -122,5 +136,9 @@ describe("LoginForm", () => {
       expect(submitButton).not.toBeDisabled();
       expect(axios.post).toHaveBeenCalled();
     });
+  });
+
+  it("should mock DisplayFormValues component", () => {
+    expect(screen.getByText("Mocked DisplayFormValues")).toBeInTheDocument();
   });
 });
